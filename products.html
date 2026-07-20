@@ -176,8 +176,8 @@
 
         <!-- mobile menu panel -->
         <div id="mobileMenu" class="md:hidden hidden flex-col bg-white border-t border-[#eadfce] px-6 py-4 gap-4 text-sm tracked uppercase">
+            <a href="index.html" class="block py-2">Home</a>
             <a href="products.html" class="block py-2">Products</a>
-            <a data-nav href="#products" class="block py-2">Products</a>
             <a data-nav href="#about" class="block py-2">About Us</a>
             <a data-nav href="#contact" class="block py-2">Contact Us</a>
         </div>
@@ -492,70 +492,52 @@
     </button>
 
     <script>
-      try {
-        // ---------- Product data (content unchanged from original) ----------
-        const products = [
-            { name: "Choco Classic", price: "₱35.00", desc: "Soft, chewy chocolate chip cookies made for every chocolate lover." },
-            { name: "Matcha Melt",   price: "₱60.00", desc: "Rich, soft matcha cookies with a smooth and delicate flavor." },
-            { name: "Matcha Melt",   price: "₱60.00", desc: "Rich, soft matcha cookies with a smooth and delicate flavor." }
-        ];
+document.addEventListener("DOMContentLoaded", () => {
 
-        const grid = document.getElementById("productGrid");
-        products.forEach((p, i) => {
-            const card = document.createElement("div");
-            card.className = "card-hairline bg-white rounded-xl shadow-md p-7 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl reveal";
-            card.style.transitionDelay = (i * 60) + "ms";
-            card.innerHTML = `
-                <h3 class="text-2xl mb-2 gold-underline inline-block">${p.name}</h3>
-                <p class="text-[--gold] font-semibold mb-3">${p.price}</p>
-                <p class="text-[--charcoal]">${p.desc}</p>
-            `;
-            card.addEventListener("click", () => openModal(p));
-            grid.appendChild(card);
-        });
+    // ---------- Mobile menu ----------
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-        // ---------- Modal ----------
-        const modal = document.getElementById("productModal");
-        document.getElementById("modalClose").addEventListener("click", () => modal.close());
-        modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
-
-        function openModal(p) {
-            document.getElementById("modalTitle").textContent = p.name;
-            document.getElementById("modalPrice").textContent = p.price;
-            document.getElementById("modalDesc").textContent = p.desc;
-            modal.showModal();
-        }
-
-        // ---------- Mobile menu ----------
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
+    if (menuBtn && mobileMenu) {
         menuBtn.addEventListener("click", () => {
-            const isHidden = mobileMenu.classList.contains("hidden");
             mobileMenu.classList.toggle("hidden");
             mobileMenu.classList.toggle("flex");
         });
-        document.querySelectorAll('[data-nav]').forEach(link => {
+
+        mobileMenu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 mobileMenu.classList.add("hidden");
                 mobileMenu.classList.remove("flex");
             });
         });
+    }
 
-        // ---------- Active nav link on scroll ----------
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".nav-link");
+    // ---------- Active nav ----------
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    if (sections.length) {
         const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    navLinks.forEach(l => l.classList.remove("active"));
-                    const active = document.querySelectorAll(`.nav-link[href="#${entry.target.id}"]`);
-                    active.forEach(l => l.classList.add("active"));
+                    navLinks.forEach(link => link.classList.remove("active"));
+
+                    document
+                        .querySelectorAll(`.nav-link[href="#${entry.target.id}"]`)
+                        .forEach(link => link.classList.add("active"));
                 }
             });
-        }, { rootMargin: "-45% 0px -50% 0px" });
-        sections.forEach(s => navObserver.observe(s));
+        }, {
+            rootMargin: "-45% 0px -50% 0px"
+        });
 
-        // ---------- Scroll reveal ----------
+        sections.forEach(section => navObserver.observe(section));
+    }
+
+    // ---------- Reveal animation ----------
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if (revealElements.length) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -563,11 +545,17 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
-        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        }, {
+            threshold: 0.15
+        });
 
-        // ---------- Back to top ----------
-        const toTop = document.getElementById("toTop");
+        revealElements.forEach(el => observer.observe(el));
+    }
+
+    // ---------- Back to top ----------
+    const toTop = document.getElementById("toTop");
+
+    if (toTop) {
         window.addEventListener("scroll", () => {
             if (window.scrollY > 500) {
                 toTop.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
@@ -575,26 +563,35 @@
                 toTop.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
             }
         });
-        toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-        // ---------- Copy email ----------
-        const emailBtn = document.getElementById("emailCopyBtn");
-        const emailHint = document.getElementById("emailCopyHint");
+        toTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    // ---------- Copy email ----------
+    const emailBtn = document.getElementById("emailCopyBtn");
+    const emailHint = document.getElementById("emailCopyHint");
+
+    if (emailBtn && emailHint) {
         emailBtn.addEventListener("click", async () => {
-            const email = emailBtn.dataset.email;
             try {
-                await navigator.clipboard.writeText(email);
+                await navigator.clipboard.writeText(emailBtn.dataset.email);
                 emailHint.textContent = "Copied!";
             } catch {
-                emailHint.textContent = email;
+                emailHint.textContent = emailBtn.dataset.email;
             }
-            setTimeout(() => { emailHint.textContent = "Tap to copy"; }, 1800);
+
+            setTimeout(() => {
+                emailHint.textContent = "Tap to copy";
+            }, 1800);
         });
-      } catch (err) {
-        // Safety net: never let a script error leave content stuck at opacity:0
-        console.error("Greyz & Glaze script error:", err);
-        document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
-      }
-    </script>
+    }
+
+});
+</script>
 </body>
 </html>
