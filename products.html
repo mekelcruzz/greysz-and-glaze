@@ -139,23 +139,32 @@
             <ul class="hidden md:flex justify-start gap-8 text-sm tracked uppercase">
                 <li><a href="index.html" class="nav-link hover:text-[--gold] transition">Home</a></li>
                 <li>
-                    <a href="products.html" class="hover:text-amber-700 transition">
+                    <a href="products.html" class="nav-link hover:text-[--gold] transition">
                     Products
                     </a>
                 </li>
             </ul>
 
             <div class="flex justify-center md:justify-center">
-                <a href="#home" class="flex items-center gap-3 group">
+                <a href="index.html" class="flex items-center gap-3 group">
                     <img src="logo.png" alt="Greyz & Glaze logo" class="h-14 w-auto transition-transform duration-300 group-hover:scale-105">
                     <span class="logo-font hidden sm:block text-2xl tracking-wide">Greyz &amp; Glaze</span>
                 </a>
             </div>
 
             <ul class="hidden md:flex justify-end gap-8 text-sm tracked uppercase">
-                <li><a data-nav href="#about" class="nav-link hover:text-[--gold] transition">About Us</a></li>
-                <li><a data-nav href="#contact" class="nav-link hover:text-[--gold] transition">Contact Us</a></li>
-            </ul>
+              <li>
+                  <a href="index.html#about" class="nav-link hover:text-[--gold] transition">
+                      About Us
+                  </a>
+              </li>
+
+              <li>
+                  <a href="index.html#contact" class="nav-link hover:text-[--gold] transition">
+                      Contact Us
+                  </a>
+              </li>
+          </ul>
 
             <!-- mobile menu button -->
             <button id="menuBtn" aria-label="Open menu" class="md:hidden p-2 text-[--ink]">
@@ -167,130 +176,286 @@
 
         <!-- mobile menu panel -->
         <div id="mobileMenu" class="md:hidden hidden flex-col bg-white border-t border-[#eadfce] px-6 py-4 gap-4 text-sm tracked uppercase">
-            <a data-nav href="#home" class="block py-2">Home</a>
+            <a href="products.html" class="block py-2">Products</a>
             <a data-nav href="#products" class="block py-2">Products</a>
             <a data-nav href="#about" class="block py-2">About Us</a>
             <a data-nav href="#contact" class="block py-2">Contact Us</a>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section id="home" class="relative py-28 md:py-36 text-center bg-gradient-to-b from-[#fff8f2] to-[#f7eadb] overflow-hidden">
-        <div class="absolute inset-0 grain pointer-events-none"></div>
-        <div class="relative max-w-3xl mx-auto px-6 reveal">
-            <p class="tracked uppercase text-xs text-[--gold] mb-6">Bauan, Batangas</p>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">
-                Greyz &amp; Glaze
-            </h1>
-            <p class="text-2xl md:text-3xl italic font-normal mb-6" style="font-family:'Playfair Display', serif; color:var(--gold)">
-                Freshly Baked Happiness
-            </p>
-            <p class="max-w-xl mx-auto text-lg text-[--charcoal]">
-                Handcrafted pastries made fresh upon order, right here in our kitchen — every bake is a small ceremony.
-            </p>
-            <a href="products.html"
-            class="inline-block mt-10 bg-[#8b5e3c] hover:bg-[#71492d] text-white px-7 py-3 rounded-lg transition">
-                View Our Products
-            </a>
-        </div>
+  <main class="max-w-6xl mx-auto px-6 py-16">
+    <h1 class="text-5xl text-center mb-4">Our Products</h1>
+    <p class="text-center mb-10">Freshly baked upon order.</p>
 
-        <div class="amp-divider mt-20"><span class="amp-mark">&amp;</span></div>
-    </section>
+    <h2 class="text-3xl mt-12 mb-6">🍪 Classic Cookies</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/15.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Choco Classic</h3>
+        <p class="text-amber-700 font-semibold">₱35</p>
+        <p>Soft, chewy chocolate chip cookies made for every chocolate lover.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/16.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Campfire Crunch</h3>
+        <p class="text-amber-700 font-semibold">₱50</p>
+        <p>Gooey s'mores goodness in every bite—graham, chocolate, and marshmallow magic.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/18.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Midnight Velvet</h3>
+        <p class="text-amber-700 font-semibold">₱50</p>
+        <p>Dark velvet cookies with a creamy center and a hint of cocoa richness.</p>
+      </div>
+    </div>
 
-    <!-- Featured Products -->
-    <section id="products" class="py-24 max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16 reveal">
-            <p class="tracked uppercase text-xs text-[--gold] mb-3">Made to order</p>
-            <h2 class="text-4xl md:text-5xl">Featured Products</h2>
-        </div>
+    <h2 class="text-3xl mt-12 mb-6">⭐ Premium Cookies</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/19.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Oreo Overload</h3>
+        <p class="text-amber-700 font-semibold">₱60</p>
+        <p>Packed with Oreo chunks.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/17.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Matcha Melt</h3>
+        <p class="text-amber-700 font-semibold">₱60</p>
+        <p>Delicate matcha cookies.</p>
+      </div>
+    </div>
 
-        <div id="productGrid" class="grid md:grid-cols-3 gap-8"></div>
-        <p class="text-center text-sm text-[--charcoal]/70 mt-10 reveal">Tap a product to see the full details.</p>
-    </section>
+    <h2 class="text-3xl mt-12 mb-6">📦 Pouch Sets of Cookies</h2>
+    <div class="grid md:grid-cols-3 gap-6">
 
-    <!-- About Us -->
-    <section id="about" class="py-24 bg-[--cream-deep]">
-        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-            <div class="reveal order-2 md:order-1">
-                <p class="tracked uppercase text-xs text-[--gold] mb-3">Our Story</p>
-                <h2 class="text-4xl mb-6">About Us</h2>
-                <p class="text-[--charcoal] mb-4">
-                    Greyz &amp; Glaze began as a home kitchen experiment in Bauan, Batangas — a search for the
-                    perfect balance between a soft, chewy bite and a rich, honest flavor.
+    <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+
+        <h3 class="text-2xl mb-4">
+            Pouch Sets
+        </h3>
+
+        <div class="space-y-4">
+
+            <div class="border-b border-gray-200 pb-3">
+                <p class="font-semibold">
+                    Pouch A
                 </p>
-                <p class="text-[--charcoal] mb-4">
-                    Every batch is mixed, shaped, and baked upon order, never left to sit. We keep our menu small
-                    on purpose, so every pastry that leaves our kitchen gets our full attention.
+                <p class="text-amber-700 font-semibold">
+                    ₱100
                 </p>
-                <p class="text-[--charcoal]">
-                    No shortcuts, no fillers — just simple ingredients, done with care.
+                <p class="text-sm text-gray-600">
+                    3 × Choco Classic Cookies
                 </p>
             </div>
-            <div class="order-1 md:order-2 flex justify-center reveal">
-                <div class="relative">
-                    <div class="absolute inset-0 rounded-full bg-[--gold-light]/30 blur-2xl"></div>
-                    <img src="logo.png" alt="Greyz & Glaze emblem" class="relative w-56 md:w-72 h-auto drop-shadow-xl">
-                </div>
+            <div class="border-b border-gray-200 pb-3">
+                <p class="font-semibold">
+                    Pouch B
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱140
+                </p>
+                <p class="text-sm text-gray-600">
+                    3 × Campfire Crunch Cookies
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold">
+                    Pouch C
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱120–₱135
+                </p>
+                <p class="text-sm text-gray-600">
+                    Mixed 3-piece cookie selection (price depends on flavor combination)
+                </p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Us -->
-    <section id="contact" class="py-24 max-w-4xl mx-auto px-6 text-center">
-        <p class="tracked uppercase text-xs text-[--gold] mb-3 reveal">Say Hello</p>
-        <h2 class="text-4xl mb-6 reveal">Contact Us</h2>
-        <p class="text-[--charcoal] max-w-lg mx-auto mb-12 reveal">
-            Place an order, ask about custom batches, or just say hi — we usually reply within the day.
-        </p>
+</div>
 
-        <div class="grid sm:grid-cols-3 gap-6 reveal">
-            <button id="emailCopyBtn" data-email="greyzandglaze@gmail.com"
-                class="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left">
-                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Email</p>
-                <p class="font-medium break-all">greyzandglaze@gmail.com</p>
-                <p id="emailCopyHint" class="text-xs text-[--charcoal]/60 mt-2">Tap to copy</p>
-            </button>
+    <h2 class="text-3xl mt-12 mb-6">🎁 Assorted Boxes of Cookies</h2>
+    <div class="grid md:grid-cols-3 gap-6">
 
-            <a href="https://www.facebook.com/share/1ZGhXtebmo/" target="_blank"
-                class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left block">
-                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Facebook</p>
-                <p class="font-medium">Greyz &amp; Glaze</p>
-                <p class="text-xs text-[--charcoal]/60 mt-2">Message us anytime</p>
-            </a>
+    <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
 
-            <a href="https://www.instagram.com/greyzandglaze" target="_blank"
-                class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left block">
-                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Instagram</p>
-                <p class="font-medium">@greyzandglaze</p>
-                <p class="text-xs text-[--charcoal]/60 mt-2">Follow our bakes</p>
-            </a>
+        <h3 class="text-2xl mb-4">
+            Assorted Boxes
+        </h3>
+
+        <div class="space-y-4">
+
+            <div class="border-b border-gray-200 pb-3">
+                <p class="font-semibold">
+                    Assorted A
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱200
+                </p>
+                <p class="text-sm text-gray-600">
+                    1 Choco Classic, 1 Campfire Crunch, 1 Oreo Overload, and 1 Matcha Melt.
+                </p>
+            </div>
+
+            <div>
+                <p class="font-semibold">
+                    Assorted E
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱240
+                </p>
+                <p class="text-sm text-gray-600">
+                    Premium curated selection of our best-selling cookies.
+                </p>
+            </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Product Modal -->
-    <dialog id="productModal">
-        <div class="p-8 relative bg-white rounded-2xl">
-            <button id="modalClose" aria-label="Close" class="absolute top-4 right-4 text-[--charcoal]/60 hover:text-[--ink] transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-            <p class="tracked uppercase text-xs text-[--gold] mb-2">Greyz &amp; Glaze</p>
-            <h3 id="modalTitle" class="text-3xl mb-2"></h3>
-            <p id="modalPrice" class="text-[--gold] font-semibold mb-4"></p>
-            <p id="modalDesc" class="text-[--charcoal] mb-6"></p>
-            <a href="https://www.facebook.com/share/1ZGhXtebmo/" target="_blank"
-               class="inline-block bg-[#3e2c23] hover:bg-[--black] text-white px-6 py-3 rounded-full tracked uppercase text-xs transition">
-                Order via Facebook
-            </a>
+    <h2 class="text-3xl mt-12 mb-6">🍌 Banana Collection</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/21.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Banana Muffin</h3>
+        <p class="text-amber-700 font-semibold">₱65</p>
+        <p>Moist banana muffin</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+        <img
+    src="images/20.png"
+    alt="Product Image"
+    class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl">Box of 3 Muffins</h3>
+        <p class="text-amber-700 font-semibold">₱180</p>
+        <p>Freshly baked</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+
+    <img
+        src="images/22.png"
+        alt="Banana Loaf"
+        class="w-full h-64 object-cover rounded-lg mb-4">
+
+    <h3 class="text-2xl mb-3">
+        Banana Loaf
+    </h3>
+
+    <div class="space-y-3">
+
+        <div class="border-b border-gray-200 pb-2">
+            <p class="font-semibold">Plain</p>
+            <p class="text-amber-700 font-semibold">₱140</p>
+            <p class="text-sm text-gray-600">
+                Soft banana loaf with natural sweetness.
+            </p>
         </div>
-    </dialog>
+
+        <div class="border-b border-gray-200 pb-2">
+            <p class="font-semibold">Chocolate Chips</p>
+            <p class="text-amber-700 font-semibold">₱180</p>
+            <p class="text-sm text-gray-600">
+                Moist banana loaf packed with chocolate chips.
+            </p>
+        </div>
+
+        <div>
+            <p class="font-semibold">Almonds</p>
+            <p class="text-amber-700 font-semibold">₱200</p>
+            <p class="text-sm text-gray-600">
+                Rich banana loaf topped with crunchy almonds.
+            </p>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <h2 class="text-3xl mt-12 mb-6">🍫 Bars</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+
+    <div class="bg-white rounded-xl shadow-md p-6 hover:-translate-y-2 hover:shadow-xl transition">
+
+        <img
+            src="images/23.png"
+            alt="Revel Bars"
+            class="w-full h-64 object-cover rounded-lg mb-4">
+        <h3 class="text-2xl mb-3">
+            Revel Bars
+        </h3>
+        <div class="space-y-3">
+            <div class="border-b border-gray-200 pb-2">
+                <p class="font-semibold">
+                    4" Per Piece
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱90
+                </p>
+                <p class="text-sm text-gray-600">
+                    Gooey chocolate center layered with soft oat goodness.
+                </p>
+            </div>
+            <div class="border-b border-gray-200 pb-2">
+                <p class="font-semibold">
+                    Half Tray
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱190
+                </p>
+                <p class="text-sm text-gray-600">
+                    Perfect portion for sharing or snacking.
+                </p>
+            </div>
+            <div>
+                <p class="font-semibold">
+                    Whole Tray
+                </p>
+                <p class="text-amber-700 font-semibold">
+                    ₱350
+                </p>
+                <p class="text-sm text-gray-600">
+                    Full indulgent tray of rich, gooey chocolate oat bars.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <section class="mt-16 bg-white rounded-xl shadow-md p-8">
+      <h2 class="text-3xl mb-4">📌 Policies & How to Order</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Freshly baked upon order.</li>
+        <li>Prices may change without prior notice.</li>
+        <li>Packaging included for pouch & boxed sets.</li>
+        <li>Single orders are unboxed by default.</li>
+        <li>Extra packaging may incur a fee.</li>
+        <li>Delivery outside Bauan may require an additional fee.</li>
+        <li>Send your order, quantity, and packaging preference.</li>
+        <li>Book in advance. No cancellations after confirmation.</li>
+      </ul>
+    </section>
+  </main>
 
     <!-- Footer -->
     <footer id="footer" class="bg-[--black] text-[--cream] py-14 relative">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
             <div>
-                <a href="#home" class="logo-font text-3xl font-bold flex items-center gap-3 mb-4">
+                <a href="index.html" class="logo-font text-3xl font-bold flex items-center gap-3 mb-4">
                     <img src="logo.png" alt="Greyz & Glaze logo" class="h-10 w-auto">
                     Greyz &amp; Glaze
                 </a>
