@@ -3,192 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greyz & Glaze</title>
+    <title>Greyz & Glaze — Freshly Baked Happiness</title>
 
+    <link rel="icon" href="logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style>
-        body {
-            font-family: "Poppins", sans-serif;
+        :root{
+            --cream:#fff8f2;
+            --cream-deep:#f7eadb;
+            --ink:#3e2c23;
+            --charcoal:#4a4a4a;
+            --black:#1c1a19;
+            --gold:#b8892e;
+            --gold-light:#d9b46a;
         }
 
-        .logo,
-        h1,
-        h2,
-        h3 {
-            font-family: "Playfair Display", serif;
+        *{ scrollbar-width: thin; scrollbar-color: var(--gold-light) var(--cream-deep); }
+
+        body{
+            font-family:"Poppins", sans-serif;
+            background-color:var(--cream);
+            color:var(--ink);
+        }
+
+        .logo-font, h1, h2, h3, .display{ font-family:"Playfair Display", serif; }
+
+        .tracked{ letter-spacing:0.28em; }
+
+        /* signature ampersand divider — echoes the logo's interlocking G&G mark */
+        .amp-divider{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:1rem;
+            color:var(--gold);
+        }
+        .amp-divider::before,
+        .amp-divider::after{
+            content:"";
+            height:1px;
+            width:56px;
+            background:linear-gradient(to var(--dir,right), transparent, var(--gold-light));
+        }
+        .amp-divider::after{ --dir:left; }
+        .amp-mark{
+            font-family:"Playfair Display", serif;
+            font-style:italic;
+            font-size:1.5rem;
+            line-height:1;
+        }
+
+        .gold-underline{
+            position:relative;
+        }
+        .gold-underline::after{
+            content:"";
+            position:absolute;
+            left:0; bottom:-10px;
+            width:36px; height:2px;
+            background:var(--gold);
+            transition:width .35s ease;
+        }
+        .gold-underline:hover::after{ width:100%; }
+
+        /* nav active state */
+        .nav-link{ position:relative; padding-bottom:4px; }
+        .nav-link::after{
+            content:"";
+            position:absolute;
+            left:0; bottom:0;
+            width:0; height:1px;
+            background:var(--gold);
+            transition:width .3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after{ width:100%; }
+        .nav-link.active{ color:var(--gold); }
+
+        .card-hairline{ border-top:2px solid var(--gold-light); }
+
+        .reveal{
+            opacity:0;
+            transform:translateY(24px);
+            transition:opacity .7s ease, transform .7s ease;
+        }
+        .reveal.in{ opacity:1; transform:translateY(0); }
+
+        @media (prefers-reduced-motion: reduce){
+            .reveal{ opacity:1; transform:none; transition:none; }
+        }
+
+        .grain{
+            background-image:radial-gradient(var(--gold-light) 0.6px, transparent 0.6px);
+            background-size:16px 16px;
+            opacity:0.12;
+        }
+
+        dialog#productModal::backdrop{
+            background:rgba(28,26,25,0.55);
+            backdrop-filter:blur(2px);
+        }
+        dialog#productModal{
+            border:none;
+            border-radius:1rem;
+            padding:0;
+            max-width:26rem;
+            width:90vw;
+            position:fixed;
+            inset:0;
+            margin:auto;
+        }
+        dialog#productModal[open]{
+            animation:modalIn .35s ease forwards;
+        }
+        @keyframes modalIn{
+            from{ opacity:0; transform:translateY(16px) scale(.97); }
+            to{ opacity:1; transform:translateY(0) scale(1); }
+        }
+
+        #toTop{
+            transition:opacity .3s ease, transform .3s ease;
         }
     </style>
-
 </head>
 
-<body class="bg-[#fff8f2] text-[#3e2c23] leading-relaxed">
+<body class="leading-relaxed">
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-[#eadfce]">
         <nav class="max-w-6xl mx-auto h-20 px-6 flex justify-between items-center">
 
-            <ul class="flex justify-start gap-8">
-    <li><a href="index.html" class="hover:text-amber-700 transition">Home</a></li>
-    <li><a href="products.html" class="hover:text-amber-700 transition">Products</a></li>
-</ul>
+            <ul class="hidden md:flex justify-start gap-8 text-sm tracked uppercase">
+                <li><a data-nav href="#home" class="nav-link hover:text-[--gold] transition">Home</a></li>
+                <li><a data-nav href="#products" class="nav-link hover:text-[--gold] transition">Products</a></li>
+            </ul>
 
-<div class="flex justify-center">
-    <a href="index.html" class="logo text-3xl font-bold tracking-wide hover:text-amber-700 transition">
-        Greyz &amp; Glaze
-    </a>
-</div>
+            <div class="flex justify-center md:justify-center">
+                <a href="#home" class="flex items-center gap-3 group">
+                    <img src="logo.png" alt="Greyz & Glaze logo" class="h-14 w-auto transition-transform duration-300 group-hover:scale-105">
+                    <span class="logo-font hidden sm:block text-2xl tracking-wide">Greyz &amp; Glaze</span>
+                </a>
+            </div>
 
-<ul class="flex justify-end gap-8">
-    <li><a href="about.html" class="hover:text-amber-700 transition">About Us</a></li>
-    <li><a href="contact.html" class="hover:text-amber-700 transition">Contact Us</a></li>
-</ul>
+            <ul class="hidden md:flex justify-end gap-8 text-sm tracked uppercase">
+                <li><a data-nav href="#about" class="nav-link hover:text-[--gold] transition">About Us</a></li>
+                <li><a data-nav href="#contact" class="nav-link hover:text-[--gold] transition">Contact Us</a></li>
+            </ul>
 
+            <!-- mobile menu button -->
+            <button id="menuBtn" aria-label="Open menu" class="md:hidden p-2 text-[--ink]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
         </nav>
 
+        <!-- mobile menu panel -->
+        <div id="mobileMenu" class="md:hidden hidden flex-col bg-white border-t border-[#eadfce] px-6 py-4 gap-4 text-sm tracked uppercase">
+            <a data-nav href="#home" class="block py-2">Home</a>
+            <a data-nav href="#products" class="block py-2">Products</a>
+            <a data-nav href="#about" class="block py-2">About Us</a>
+            <a data-nav href="#contact" class="block py-2">Contact Us</a>
+        </div>
     </header>
 
     <!-- Hero -->
-    <section id="home" class="py-28 text-center bg-gradient-to-b from-[#fff8f2] to-[#f7eadb]">
-        <div class="max-w-5xl mx-auto px-6">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                Freshly Baked Happiness
+    <section id="home" class="relative py-28 md:py-36 text-center bg-gradient-to-b from-[#fff8f2] to-[#f7eadb] overflow-hidden">
+        <div class="absolute inset-0 grain pointer-events-none"></div>
+        <div class="relative max-w-3xl mx-auto px-6 reveal">
+            <p class="tracked uppercase text-xs text-[--gold] mb-6">Bauan, Batangas</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                Greyz &amp; Glaze
             </h1>
-                    <p class="max-w-2xl mx-auto text-lg">
-                        Handcrafted pastries made fresh upon order right here in Bauan, Batangas.
-                    </p>
+            <p class="text-2xl md:text-3xl italic font-normal mb-6" style="font-family:'Playfair Display', serif; color:var(--gold)">
+                Freshly Baked Happiness
+            </p>
+            <p class="max-w-xl mx-auto text-lg text-[--charcoal]">
+                Handcrafted pastries made fresh upon order, right here in our kitchen — every bake is a small ceremony.
+            </p>
             <a href="#products"
-                class="inline-block mt-10 bg-[#8b5e3c] hover:bg-[#71492d] text-white px-7 py-3 rounded-lg transition">
+                class="inline-block mt-10 bg-[#3e2c23] hover:bg-[--black] text-white px-8 py-3.5 rounded-full tracked uppercase text-xs transition">
                 View Our Products
             </a>
-
         </div>
 
+        <div class="amp-divider mt-20"><span class="amp-mark">&amp;</span></div>
     </section>
 
     <!-- Featured Products -->
-    <section id="products" class="py-20 max-w-6xl mx-auto px-6">
-
-        <h2 class="text-4xl text-center mb-12">
-            Featured Products
-        </h2>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-xl shadow-md p-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:scale-[1.03]">
-                <h3 class="text-2xl mb-2">
-                    Choco Classic
-                </h3>
-                    <p class="text-amber-700 font-semibold mb-3">
-                        ₱35.00
-                    </p>
-                <p>
-                    Soft, chewy chocolate chip cookies made for every chocolate lover.
-                </p>
+    <section id="products" class="py-24 max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <p class="tracked uppercase text-xs text-[--gold] mb-3">Made to order</p>
+            <h2 class="text-4xl md:text-5xl">Featured Products</h2>
         </div>
 
-            <div class="bg-white rounded-xl shadow-md p-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:scale-[1.03]">
-                    <h3 class="text-2xl mb-2">
-                        Matcha Melt
-                    </h3>
-                        <p class="text-amber-700 font-semibold mb-3">
-                            ₱60.00
-                        </p>
-                    <p>
-                        Rich, soft matcha cookies with a smooth and delicate flavor.
-                    </p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-md p-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:scale-[1.03]">
-                    <h3 class="text-2xl mb-2">
-                        Matcha Melt
-                    </h3>
-                        <p class="text-amber-700 font-semibold mb-3">
-                            ₱60.00
-                        </p>
-                    <p>
-                        Rich, soft matcha cookies with a smooth and delicate flavor.
-                    </p>
-            </div>
-
-        </div>
-
+        <div id="productGrid" class="grid md:grid-cols-3 gap-8"></div>
+        <p class="text-center text-sm text-[--charcoal]/70 mt-10 reveal">Tap a product to see the full details.</p>
     </section>
 
+    <!-- About Us -->
+    <section id="about" class="py-24 bg-[--cream-deep]">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+            <div class="reveal order-2 md:order-1">
+                <p class="tracked uppercase text-xs text-[--gold] mb-3">Our Story</p>
+                <h2 class="text-4xl mb-6">About Us</h2>
+                <p class="text-[--charcoal] mb-4">
+                    Greyz &amp; Glaze began as a home kitchen experiment in Bauan, Batangas — a search for the
+                    perfect balance between a soft, chewy bite and a rich, honest flavor.
+                </p>
+                <p class="text-[--charcoal] mb-4">
+                    Every batch is mixed, shaped, and baked upon order, never left to sit. We keep our menu small
+                    on purpose, so every pastry that leaves our kitchen gets our full attention.
+                </p>
+                <p class="text-[--charcoal]">
+                    No shortcuts, no fillers — just simple ingredients, done with care.
+                </p>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center reveal">
+                <div class="relative">
+                    <div class="absolute inset-0 rounded-full bg-[--gold-light]/30 blur-2xl"></div>
+                    <img src="logo.png" alt="Greyz & Glaze emblem" class="relative w-56 md:w-72 h-auto drop-shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact" class="py-24 max-w-4xl mx-auto px-6 text-center">
+        <p class="tracked uppercase text-xs text-[--gold] mb-3 reveal">Say Hello</p>
+        <h2 class="text-4xl mb-6 reveal">Contact Us</h2>
+        <p class="text-[--charcoal] max-w-lg mx-auto mb-12 reveal">
+            Place an order, ask about custom batches, or just say hi — we usually reply within the day.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-6 reveal">
+            <button id="emailCopyBtn" data-email="greyzandglaze@gmail.com"
+                class="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left">
+                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Email</p>
+                <p class="font-medium break-all">greyzandglaze@gmail.com</p>
+                <p id="emailCopyHint" class="text-xs text-[--charcoal]/60 mt-2">Tap to copy</p>
+            </button>
+
+            <a href="https://www.facebook.com/share/1ZGhXtebmo/" target="_blank"
+                class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left block">
+                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Facebook</p>
+                <p class="font-medium">Greyz &amp; Glaze</p>
+                <p class="text-xs text-[--charcoal]/60 mt-2">Message us anytime</p>
+            </a>
+
+            <a href="https://www.instagram.com/greyzandglaze" target="_blank"
+                class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 text-left block">
+                <p class="tracked uppercase text-[0.65rem] text-[--gold] mb-2">Instagram</p>
+                <p class="font-medium">@greyzandglaze</p>
+                <p class="text-xs text-[--charcoal]/60 mt-2">Follow our bakes</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <dialog id="productModal">
+        <div class="p-8 relative bg-white rounded-2xl">
+            <button id="modalClose" aria-label="Close" class="absolute top-4 right-4 text-[--charcoal]/60 hover:text-[--ink] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <p class="tracked uppercase text-xs text-[--gold] mb-2">Greyz &amp; Glaze</p>
+            <h3 id="modalTitle" class="text-3xl mb-2"></h3>
+            <p id="modalPrice" class="text-[--gold] font-semibold mb-4"></p>
+            <p id="modalDesc" class="text-[--charcoal] mb-6"></p>
+            <a href="https://www.facebook.com/share/1ZGhXtebmo/" target="_blank"
+               class="inline-block bg-[#3e2c23] hover:bg-[--black] text-white px-6 py-3 rounded-full tracked uppercase text-xs transition">
+                Order via Facebook
+            </a>
+        </div>
+    </dialog>
+
     <!-- Footer -->
-    <footer id="footer" class="bg-[#3e2c23] text-[#fff8f2] py-12">
-
+    <footer id="footer" class="bg-[--black] text-[--cream] py-14 relative">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
-
             <div>
-
-                <h3 class="logo text-3xl font-bold mb-4">
+                <a href="#home" class="logo-font text-3xl font-bold flex items-center gap-3 mb-4">
+                    <img src="logo.png" alt="Greyz & Glaze logo" class="h-10 w-auto">
                     Greyz &amp; Glaze
-                </h3>
-
-                <p class="text-gray-300">
+                </a>
+                <p class="text-gray-400 max-w-xs">
                     Freshly baked happiness, straight from our kitchen to yours.
                 </p>
-
             </div>
 
             <div>
-
-                <h4 class="text-xl font-semibold mb-4">
-                    Contact Us
-                </h4>
-
+                <h4 class="text-lg tracked uppercase text-[--gold-light] mb-4">Contact Us</h4>
                 <p class="mb-2">
-                    <strong>Email:</strong>
-
-                    <a href="mailto:greyzandglaze@gmail.com"
-                        class="text-amber-200 hover:underline">
-
-                        greyzandglaze@gmail.com
-
-                    </a>
+                    <a href="mailto:greyzandglaze@gmail.com" class="text-[--gold-light] hover:underline">greyzandglaze@gmail.com</a>
                 </p>
-
                 <p class="mb-2">
-                    <strong>Facebook:</strong>
-
-                    <a href="https://www.facebook.com/share/1ZGhXtebmo/"
-                        target="_blank"
-                        class="text-amber-200 hover:underline">
-
-                        Greyz &amp; Glaze
-
-                    </a>
+                    <a href="https://www.facebook.com/share/1ZGhXtebmo/" target="_blank" class="text-[--gold-light] hover:underline">Facebook — Greyz &amp; Glaze</a>
                 </p>
-
                 <p>
-                    <strong>Instagram:</strong>
-
-                    <a href="https://www.instagram.com/greyzandglaze"
-                        target="_blank"
-                        class="text-amber-200 hover:underline">
-
-                        @greyzandglaze
-
-                    </a>
+                    <a href="https://www.instagram.com/greyzandglaze" target="_blank" class="text-[--gold-light] hover:underline">Instagram — @greyzandglaze</a>
                 </p>
-
             </div>
-
         </div>
 
-        <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400 text-sm">
+        <div class="amp-divider my-8 opacity-60"><span class="amp-mark">&amp;</span></div>
 
+        <div class="text-center text-gray-500 text-sm">
             &copy; 2026 Greyz &amp; Glaze. All Rights Reserved.
-
         </div>
-
     </footer>
 
-</body>
+    <!-- back to top -->
+    <button id="toTop" aria-label="Back to top"
+        class="fixed bottom-6 right-6 opacity-0 pointer-events-none translate-y-4 bg-[#3e2c23] text-white rounded-full h-11 w-11 flex items-center justify-center shadow-lg hover:bg-[--black] z-40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
 
+    <script>
+      try {
+        // ---------- Product data (content unchanged from original) ----------
+        const products = [
+            { name: "Choco Classic", price: "₱35.00", desc: "Soft, chewy chocolate chip cookies made for every chocolate lover." },
+            { name: "Matcha Melt",   price: "₱60.00", desc: "Rich, soft matcha cookies with a smooth and delicate flavor." },
+            { name: "Matcha Melt",   price: "₱60.00", desc: "Rich, soft matcha cookies with a smooth and delicate flavor." }
+        ];
+
+        const grid = document.getElementById("productGrid");
+        products.forEach((p, i) => {
+            const card = document.createElement("div");
+            card.className = "card-hairline bg-white rounded-xl shadow-md p-7 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl reveal";
+            card.style.transitionDelay = (i * 60) + "ms";
+            card.innerHTML = `
+                <h3 class="text-2xl mb-2 gold-underline inline-block">${p.name}</h3>
+                <p class="text-[--gold] font-semibold mb-3">${p.price}</p>
+                <p class="text-[--charcoal]">${p.desc}</p>
+            `;
+            card.addEventListener("click", () => openModal(p));
+            grid.appendChild(card);
+        });
+
+        // ---------- Modal ----------
+        const modal = document.getElementById("productModal");
+        document.getElementById("modalClose").addEventListener("click", () => modal.close());
+        modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
+
+        function openModal(p) {
+            document.getElementById("modalTitle").textContent = p.name;
+            document.getElementById("modalPrice").textContent = p.price;
+            document.getElementById("modalDesc").textContent = p.desc;
+            modal.showModal();
+        }
+
+        // ---------- Mobile menu ----------
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        menuBtn.addEventListener("click", () => {
+            const isHidden = mobileMenu.classList.contains("hidden");
+            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("flex");
+        });
+        document.querySelectorAll('[data-nav]').forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                mobileMenu.classList.remove("flex");
+            });
+        });
+
+        // ---------- Active nav link on scroll ----------
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove("active"));
+                    const active = document.querySelectorAll(`.nav-link[href="#${entry.target.id}"]`);
+                    active.forEach(l => l.classList.add("active"));
+                }
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        sections.forEach(s => navObserver.observe(s));
+
+        // ---------- Scroll reveal ----------
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+        // ---------- Back to top ----------
+        const toTop = document.getElementById("toTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 500) {
+                toTop.classList.remove("opacity-0", "pointer-events-none", "translate-y-4");
+            } else {
+                toTop.classList.add("opacity-0", "pointer-events-none", "translate-y-4");
+            }
+        });
+        toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+        // ---------- Copy email ----------
+        const emailBtn = document.getElementById("emailCopyBtn");
+        const emailHint = document.getElementById("emailCopyHint");
+        emailBtn.addEventListener("click", async () => {
+            const email = emailBtn.dataset.email;
+            try {
+                await navigator.clipboard.writeText(email);
+                emailHint.textContent = "Copied!";
+            } catch {
+                emailHint.textContent = email;
+            }
+            setTimeout(() => { emailHint.textContent = "Tap to copy"; }, 1800);
+        });
+      } catch (err) {
+        // Safety net: never let a script error leave content stuck at opacity:0
+        console.error("Greyz & Glaze script error:", err);
+        document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+      }
+    </script>
+</body>
 </html>
